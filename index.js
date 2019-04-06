@@ -22,6 +22,10 @@ app.get('/', function(req, res){
     res.render('index');
 });
 
+app.get('/register', function(req, res) {
+	res.render('register');
+});
+
 // -------------- listener -------------- //
 // // The listener is what keeps node 'alive.' 
 

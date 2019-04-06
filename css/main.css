@@ -1,0 +1,18 @@
+.buttonDiv {
+	border-radius: 5px;
+	box-shadow: 0 3px 3px black;
+	padding: .8em 1.2em;
+	border: none;
+	position: relative;
+}
+
+.buttonDiv:hover {
+	background-color: #E3DEE0;
+	cursor: pointer;
+}
+
+.buttonDiv:active {
+	background-color: #FFF; 
+	box-shadow: none;
+    top: 3px;
+}
