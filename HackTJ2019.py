@@ -10,5 +10,5 @@ def find_tweets(longitude,latitude):
     print(string)
     location_tweets = api.search(q='Trump',count = 100,geocode=string)
     for tweet in location_tweets:
-        print(tweet)
+        print(tweet.text)
 find_tweets(39.0116285,-77.358158)
