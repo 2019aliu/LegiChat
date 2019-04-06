@@ -22,8 +22,6 @@ app.get('/', function(req, res){
     res.render('index');
 });
 
-// testingtesting123
-
 // -------------- listener -------------- //
 // // The listener is what keeps node 'alive.' 
 
