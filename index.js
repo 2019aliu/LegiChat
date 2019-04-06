@@ -3,7 +3,6 @@
 //---------------Load Packages---------------------------//
 var express = require('express');
 var request = require('request');
-var cookieSession = require('cookie-session');
 var path = require('path');
 var mysql = require('mysql');
 var hbs = require('hbs');
