@@ -18,3 +18,6 @@ app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use('/css', express.static(path.join(__dirname, 'css')));
 app.use('/img', express.static(path.join(__dirname, 'img')));
 
+app.get('/', function(req, res){
+    res.render('index');
+});
