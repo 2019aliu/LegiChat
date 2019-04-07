@@ -55,9 +55,18 @@ app.get('/forum', function(req, res){
     if (typeof req.session == 'undefined') {
         res.redirect('login');
     }
-    pool.query("SELECT zipcode FROM users WHERE username = ?;", [req.session.token], function(error,results, fields) {
+    pool.query("SELECT * FROM users WHERE username = ?;", [req.session.token], function(error,results, fields) {
         if (error) throw error;
-        var zip = results[0];
+        console.log('RESULTS', results);
+        var zip 
+        try {
+            zip = results[0].zipcode
+        } catch(error) {
+            var zips = ['22066', '22182', '22181', '22101']
+     zip = zips[Math.floor(Math.random() * zips.length)];
+
+
+        }
         var parameters = {
             'level': 'NATIONAL_LOWER',
             'address': zip
@@ -70,13 +79,15 @@ app.get('/forum', function(req, res){
             // Finally, we pick out the data we want and print it to the console
             // Use Postman to figure out what format your data is in and access it accordingly
             representatives.forEach(function(representative) {
+                console.log('REPRESENTATIVE', JSON.stringify(representative))
               var firstName = representative['first_name']
               var lastName = representative['last_name']
               var message = firstName + " " + lastName;
               var ret = {
                   firstName, lastName, message
               }
-              res.render('index',{"legislatorName": message});
+              console.log('MESSAGE', message)
+              res.render('index',{"legislatorName": message, "username": "user"});
             })
             
           }).catch(function(error) {
@@ -89,7 +100,7 @@ app.get('/forum', function(req, res){
             throw (error);
           })
 
-        res.render('index');
+        // res.render('index');
     })
     
 })
