@@ -42,7 +42,7 @@ axios.defaults.headers.common['X-API-Key'] = xAPIKey
 var endpoint = 'https://fmrrixuk32.execute-api.us-east-1.amazonaws.com/hacktj/legislators'
 
 app.get('/', function(req, res){
-    res.render('index');
+    res.render('indexLogin');
 });
 
 app.get('/getLegislators', function(req, res){

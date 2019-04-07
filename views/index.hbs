@@ -17,11 +17,26 @@
 		<nav class="topnav">
 			<a href="/" class="logo" ><img src="../img/Legichat.png"></a>
 			<a href="/login">{{username}}</a>
-			<a href="/register">Sign up</a>
 			<a href="/forum" >Forum</a>
 		</nav>
 
-		
+		<form id="postBoard" name="postBoard" class="centerCard">
+			<h4>Your legislator is {{legislatorName}}</h4>
+			<br>
+			<div class="formItem">
+				<label for="subject">Subject</label>
+				<input type="text" id="subject" name="subject" placeholder="Subject line here"/>
+			</div>
+			<br>
+			<br>
+			<div class="formItem">
+				<label for="body">Your Message</label>
+				<input type="text" id="subject" name="subject" placeholder="Enter your message to your local legislator here"/>
+			</div>
+			<br>
+			<br>
+			<input type="button" title="Submit">
+		</form>
 		
 	</body>
 </html>
