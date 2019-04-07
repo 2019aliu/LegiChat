@@ -65,6 +65,10 @@ app.get('/makeuser', function(req, res) {
 
 app.get('/login', function(req, res) {
     res.render('login');
+    pool.query('SELECT * FROM users WHERE email="a";', function(error,results,fields){
+        if (error) throw error;
+        console.log(results);
+    })
 });
 
 app.get('/login-endpoint', function(req, res){
