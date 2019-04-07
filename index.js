@@ -52,7 +52,10 @@ app.get('/', function(req, res){
 });
 
 app.get('/forum', function(req, res){
-    res.render('index')
+    if (typeof res.session == 'undefined') {
+        res.redirect('login');
+    }
+    res.render('index');
 })
 
 app.get('/getLegislators', function(req, res){
