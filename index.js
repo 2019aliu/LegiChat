@@ -37,7 +37,7 @@ var pool  = mysql.createPool({
 });
 
 app.get('/', function(req, res){
-    res.render('index');
+    res.render('indexLogin');
 });
 
 app.get('/register', function(req, res) {
