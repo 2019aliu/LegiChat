@@ -53,7 +53,7 @@
                 data: $("#login").serialize(),
                 success: function(data) {
                     console.log("ondata");
-                    if(data == "Incorrect email or username." || data == "Incorrect password.") {
+                    if(data == "Incorrect email." || data == "Incorrect password.") {
                     	document.getElementById("error").innerHTML = data;
                     }
                     else {
@@ -63,6 +63,7 @@
                 },
 				failure: function(data) {
 					console.log(data);
+					document.getElementById("error").innerHTML = "Incorrect email or password";
 				}
             });
 		}
