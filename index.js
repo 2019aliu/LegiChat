@@ -14,6 +14,12 @@ app.set('port', process.env.PORT || 8080 );  // set up the port
 app.set('view engine', 'hbs');  // set up handlebars
 app.set('trust proxy', 1);
 
+//-----------------init cookies--------------------//
+app.use(cookieSession({
+  name: 'snoopy',
+  keys: ['BlizzIsBad', 'AtLifeAndEverythingElse']
+}));
+
 //---------------Server Static Folders-------------------//
 app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use('/css', express.static(path.join(__dirname, 'css')));
