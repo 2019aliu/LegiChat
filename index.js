@@ -7,6 +7,7 @@ var path = require('path');
 var cookieSession = require('cookie-session');
 var mysql = require('mysql');
 var hbs = require('hbs');
+var cookies = require('cookies');
 var app = express();
 
 //---------------Express init----------------------------//

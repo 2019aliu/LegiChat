@@ -54,7 +54,6 @@
 .topnav {
 	height: 7.5%;
 	background-color: rgba(255, 255, 255, 0);
-	
 }
 
 .topnav a {
@@ -69,8 +68,6 @@
 .topnav a:hover {
 	text-decoration: underline solid #8F9BA6;
 }
-
-
 
 .topnav .logo {
 	float: left;
