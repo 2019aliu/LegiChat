@@ -42,13 +42,18 @@ axios.defaults.headers.common['X-API-Key'] = xAPIKey
 var endpoint = 'https://fmrrixuk32.execute-api.us-east-1.amazonaws.com/hacktj/legislators'
 
 app.get('/', function(req, res){
-  if(typeof res.session == 'undefined') {
     res.render('indexLogin');
-  }
-  else{
-  res.render('index');
-  }
+//   if(typeof res.session == 'undefined') {
+//     res.render('indexLogin');
+//   }
+//   else{
+//   res.render('index');
+//   }
 });
+
+app.get('/forum', function(req, res){
+    res.render('index')
+})
 
 app.get('/getLegislators', function(req, res){
     var zipcode = req.query.zip;
