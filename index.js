@@ -33,22 +33,19 @@ app.get('/', function(req, res){
 });
 
 app.get('/register', function(req, res) {
-	res.render('register');
+  res.render('register');
 });
 
 app.get('/makeuser', function(req, res) {
-	var myEmail = req.query.email;
+    console.log(req.query);
+  var myEmail = req.query.email;
     var myUsername = req.query.username;
     var myPassword = req.query.password;
     var myZip = parseInt(req.query.zip, 10);
 
-    console.log(myEmail);
-    console.log(myUsername);
-    console.log(myPassword);
-    console.log(myZip);
-
     // var addUser = 'call initialize_user("' + myEmail + '",' +  username + '",' + password + '",' + zip + ')';
     var addUser = 'call initialize_user(?, ?, ?, ?);';
+    
     pool.query(addUser, [myEmail, myUsername, myPassword, myZip], function(error, results, fields){
         if (error) throw error;
         var message = "Registration is successful! Please log in with your new credentials";
@@ -56,7 +53,7 @@ app.get('/makeuser', function(req, res) {
             msg: message
         };
         res.send(response);
-    })
+    });
 });
 
 app.get('/login', function(req, res) {
