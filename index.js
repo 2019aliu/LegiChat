@@ -42,6 +42,11 @@ app.get('/makeuser', function(req, res) {
     var myPassword = req.query.password;
     var myZip = parseInt(req.query.zip, 10);
 
+    console.log(myEmail);
+    console.log(myUsername);
+    console.log(myPassword);
+    console.log(myZip);
+
     // var addUser = 'call initialize_user("' + myEmail + '",' +  username + '",' + password + '",' + zip + ')';
     var addUser = 'call initialize_user(?, ?, ?, ?);';
     pool.query(addUser, [myEmail, myUsername, myPassword, myZip], function(error, results, fields){
