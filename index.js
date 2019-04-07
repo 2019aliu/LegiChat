@@ -61,7 +61,7 @@ app.get('/login', function(req, res) {
     res.render('login');
 });
 
-app.get('/login_endpoint', function(req, res){
+app.get('/login-endpoint', function(req, res){
     //nothing here yet
 });
 
