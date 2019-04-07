@@ -55,9 +55,9 @@ app.get('/forum', function(req, res){
     if (typeof res.session == 'undefined') {
         res.redirect('login');
     }
-    pool.query("SELECT * FROM users WHERE username = ?;", [req.session.token], function(error,results, fields) {
+    pool.query("SELECT zipcode FROM users WHERE username = ?;", [req.session.token], function(error,results, fields) {
         if (error) throw error;
-        var zip = results[0].zipcode;
+        var zip = results[0];
         var parameters = {
             'level': 'NATIONAL_LOWER',
             'address': zip
