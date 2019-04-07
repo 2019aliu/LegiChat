@@ -18,6 +18,16 @@ app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use('/css', express.static(path.join(__dirname, 'css')));
 app.use('/img', express.static(path.join(__dirname, 'img')));
 
+//--------------Connect database pool-------------//
+var pool  = mysql.createPool({
+  connectionLimit : 10,
+  user            : 'site_legichat',
+  password        : '3QWmQHvXEPu862bWaktFxSGe',
+  host            : 'mysql1.csl.tjhsst.edu',
+  port            : 3306,
+  database        : 'site_legichat'
+});
+
 app.get('/', function(req, res){
     res.render('index');
 });
@@ -26,6 +36,9 @@ app.get('/register', function(req, res) {
 	res.render('register');
 });
 
+app.get('/makeuser', function(req, res) {
+	
+});
 // -------------- listener -------------- //
 // // The listener is what keeps node 'alive.' 
 
