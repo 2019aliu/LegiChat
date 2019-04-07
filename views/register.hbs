@@ -29,12 +29,17 @@
 			<input id="zip" type="text" name="zip"/>
 			<br>
 			<br>
-			<button onclick="validateForm()">Register</div>
+			<input type="button" value="Register" onclick="validateForm()"/>
 		</form>
 		<h3 id="updateText"></h3>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<script type="text/javascript">
+    // 		$("#userReg").submit(function(e){
+    //             e.preventDefault();
+    //             validateForm();
+    //         });
 			function validateForm() {
+			    console.log("VAL");
 				var userEmail = document.getElementById("email").value.trim();
 				var userName = document.getElementById("username").value.trim();
                 var userPassword = document.getElementById("password").value.trim();
@@ -54,7 +59,8 @@
                     url: "makeuser",
                     data: $("#userReg").serialize(),
                     success: function(data) {
-                        document.getElementById("updateText").innerHTML(data.msg);
+                        console.log("ondata");
+                        document.getElementById("updateText").innerHTML = data.msg;
 						window.location = "https://legichat.sites.tjhsst.edu/login";
 						//window.location to access a different part of the site
                     },
