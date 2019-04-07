@@ -55,45 +55,83 @@ app.get('/forum', function(req, res){
     if (typeof res.session == 'undefined') {
         res.redirect('login');
     }
-    res.render('index');
+    pool.query("SELECT * FROM users WHERE username = ?;", [req.session.token], function(error,results, fields) {
+        if (error) throw error;
+        var zip = results[0].zipcode;
+        var parameters = {
+            'level': 'NATIONAL_LOWER',
+            'address': zip
+          }
+    
+        axios.get(endpoint, {
+            params: parameters
+          }).then(function(response) {
+            var representatives = response.data.officials
+            // Finally, we pick out the data we want and print it to the console
+            // Use Postman to figure out what format your data is in and access it accordingly
+            representatives.forEach(function(representative) {
+              var firstName = representative['first_name']
+              var lastName = representative['last_name']
+              var message = firstName + " " + lastName;
+              var ret = {
+                  firstName, lastName, message
+              }
+              res.render('index',{"legislatorName": message});
+            })
+            
+          }).catch(function(error) {
+            if (xAPIKey === '') {
+              console.error('GET Request failed, your API Key is empty!')
+              console.error('Set the `xAPIKey` variable\'s value (line 6) to your Phone2Action API Key!')
+            } else {
+              console.error(error);
+            }
+            throw (error);
+          })
+
+        res.render('index');
+    })
+    
 })
 
-app.get('/getLegislators', function(req, res){
-    var zipcode = req.query.zip;
+// app.get('/getLegislators', function(req, res){
+//     pool.query
+    
+//     var zipcode = req.query.zip;
 
-    var parameters = {
-        'level': 'NATIONAL_LOWER',
-        'address': zipcode
-      }
+//     var parameters = {
+//         'level': 'NATIONAL_LOWER',
+//         'address': zipcode
+//       }
 
-    axios.get(endpoint, {
-        params: parameters
-      }).then(function(response) {
-        var representatives = response.data.officials
-        // Finally, we pick out the data we want and print it to the console
-        // Use Postman to figure out what format your data is in and access it accordingly
-        representatives.forEach(function(representative) {
-          var firstName = representative['first_name']
-          var lastName = representative['last_name']
-          var message = 'Your Representative in national Congress is' + firstName + lastName;
-          var ret = {
-              firstName, lastName, message
-          }
-          res.send(ret);
-        })
+//     axios.get(endpoint, {
+//         params: parameters
+//       }).then(function(response) {
+//         var representatives = response.data.officials
+//         // Finally, we pick out the data we want and print it to the console
+//         // Use Postman to figure out what format your data is in and access it accordingly
+//         representatives.forEach(function(representative) {
+//           var firstName = representative['first_name']
+//           var lastName = representative['last_name']
+//           var message = 'Your Representative in national Congress is' + firstName + lastName;
+//           var ret = {
+//               firstName, lastName, message
+//           }
+//           res.render('index',)
+//         })
         
-      }).catch(function(error) {
-        if (xAPIKey === '') {
-          console.error('GET Request failed, your API Key is empty!')
-          console.error('Set the `xAPIKey` variable\'s value (line 6) to your Phone2Action API Key!')
-        } else {
-          console.error(error);
-        }
-        throw (error);
-      })
+//       }).catch(function(error) {
+//         if (xAPIKey === '') {
+//           console.error('GET Request failed, your API Key is empty!')
+//           console.error('Set the `xAPIKey` variable\'s value (line 6) to your Phone2Action API Key!')
+//         } else {
+//           console.error(error);
+//         }
+//         throw (error);
+//       })
       
       
-});
+// });
 
 app.get('/register', function(req, res) {
   res.render('register');
