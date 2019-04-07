@@ -64,16 +64,7 @@ app.get('/makeuser', function(req, res) {
 });
 
 app.get('/login', function(req, res) {
-   
-    pool.query('SELECT * FROM users WHERE email="a";', function(error,results,fields){
-        if (error) throw error;
-        console.log(results);
-        pool.query('SELECT * FROM users WHERE email="efa";', function(error,results,fields){
-        if (error) throw error;
-        console.log(results);
-    });
-    });
-     res.render('login');
+
 });
 
 app.get('/login-endpoint', function(req, res){
