@@ -45,7 +45,9 @@ app.get('/', function(req, res){
   if(typeof res.session == 'undefined') {
     res.render('indexLogin');
   }
+  else if(typeof res.session.token != 'undefined') {
   res.render('index');
+  }
 });
 
 app.get('/getLegislators', function(req, res){
