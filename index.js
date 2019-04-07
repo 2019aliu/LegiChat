@@ -125,14 +125,14 @@ app.get('/login_endpoint', function(req, res){
 			    }
 			    if(results[0].password == myPassword) {
 			    	//create "logged in" cookie here
-			    	cook.set("token", "log");
+			    	cook.set("token", results[0].username);
 			    	res.send("login");
 			    }
 			});
         }
         if(results[0].password == myPassword) {
         	//create "logged in" cookie here
-        	cook.set("token", "log");
+        	cook.set("token", results[0].username);
 			res.send("login");
 		}
 		else {
