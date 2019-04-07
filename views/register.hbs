@@ -54,7 +54,7 @@
                     url: "makeuser",
                     data: $("#userReg").serialize(),
                     success: function(data) {
-                        document.getElementById("updateText").innerText(data.msg);
+                        document.getElementById("updateText").innerHTML(data.msg);
 						window.location = "https://legichat.sites.tjhsst.edu/login";
 						//window.location to access a different part of the site
                     },
