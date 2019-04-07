@@ -1,6 +1,7 @@
 html {
-    height: 100%;
-    background-image: url('../img/homepageBackground2.jpg');
+    /* height: 100%; */
+	background-image: url('../img/homepageBackground2.jpg');
+	background-size: cover;
 }
 
 .buttonDiv {
