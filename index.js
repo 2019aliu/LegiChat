@@ -52,7 +52,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/forum', function(req, res){
-    if (typeof res.session == 'undefined') {
+    if (typeof req.session == 'undefined') {
         res.redirect('login');
     }
     pool.query("SELECT zipcode FROM users WHERE username = ?;", [req.session.token], function(error,results, fields) {
