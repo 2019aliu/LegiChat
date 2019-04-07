@@ -8,6 +8,7 @@ var cookieSession = require('cookie-session');
 var mysql = require('mysql');
 var hbs = require('hbs');
 var cookies = require('cookies');
+var axios = require('axios');
 var app = express();
 
 //---------------Express init----------------------------//
@@ -36,8 +37,46 @@ var pool  = mysql.createPool({
   database        : 'site_legichat'
 });
 
+var xAPIKey = 'ie5EtNqb2pafUpw0FsMC84hHqrW9L4uf2Ql9YTJF';
+axios.defaults.headers.common['X-API-Key'] = xAPIKey
+var endpoint = 'https://fmrrixuk32.execute-api.us-east-1.amazonaws.com/hacktj/legislators'
+
 app.get('/', function(req, res){
-    res.render('indexLogin');
+    res.render('index');
+});
+
+app.get('/getLegislators', function(req, res){
+    var ret = "";
+
+    var zipcode = req.query.zip;
+
+    var parameters = {
+        'level': 'NATIONAL_LOWER',
+        'address': zipcode
+      }
+
+    axios.get(endpoint, {
+        params: parameters
+      }).then(function(response) {
+        var representatives = response.data.officials
+        // Finally, we pick out the data we want and print it to the console
+        // Use Postman to figure out what format your data is in and access it accordingly
+        representatives.forEach(function(representative) {
+          var firstName = representative['first_name']
+          var lastName = representative['last_name']
+          ret = 'Your Representative in national Congress is' + firstName + lastName;
+        })
+        
+      }).catch(function(error) {
+        if (xAPIKey === '') {
+          console.error('GET Request failed, your API Key is empty!')
+          console.error('Set the `xAPIKey` variable\'s value (line 6) to your Phone2Action API Key!')
+        } else {
+          console.error(error)
+        }
+      })
+
+      res.send(ret);
 });
 
 app.get('/register', function(req, res) {
