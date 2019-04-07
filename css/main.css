@@ -1,3 +1,8 @@
+html {
+    height: 100%;
+    background-image: url('../img/homepageBackground.png');
+}
+
 .buttonDiv {
 	border-radius: 5px;
 	box-shadow: 0 3px 3px black;
