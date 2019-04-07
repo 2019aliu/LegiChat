@@ -46,8 +46,6 @@ app.get('/', function(req, res){
 });
 
 app.get('/getLegislators', function(req, res){
-    var ret = "";
-
     var zipcode = req.query.zip;
 
     var parameters = {
@@ -64,7 +62,11 @@ app.get('/getLegislators', function(req, res){
         representatives.forEach(function(representative) {
           var firstName = representative['first_name']
           var lastName = representative['last_name']
-          ret = 'Your Representative in national Congress is' + firstName + lastName;
+          var message = 'Your Representative in national Congress is' + firstName + lastName;
+          var ret = {
+              firstName, lastName, message
+          }
+          res.send(ret);
         })
         
       }).catch(function(error) {
@@ -72,11 +74,12 @@ app.get('/getLegislators', function(req, res){
           console.error('GET Request failed, your API Key is empty!')
           console.error('Set the `xAPIKey` variable\'s value (line 6) to your Phone2Action API Key!')
         } else {
-          console.error(error)
+          console.error(error);
         }
+        throw (error);
       })
-
-      res.send(ret);
+      
+      
 });
 
 app.get('/register', function(req, res) {
