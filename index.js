@@ -117,10 +117,10 @@ app.get('/login_endpoint', function(req, res){
     pool.query("SELECT * FROM users WHERE email=?", [myUsername], function(error, results, fields){
         if (error) throw error;
         var cook = new cookies(req, res, ['fdsa']);
-        if(results.length == 0) {
+        if(results == null) {
         	pool.query("SELECT * FROM users WHERE email=?", [myUsername], function(error, results, fields){
 			    if (error) throw error;
-			    if(results.length == 0) {
+			    if(results == null) {
 			    	res.send("Incorrect email or username.");	
 			    }
 			    if(results[0].password == myPassword) {
