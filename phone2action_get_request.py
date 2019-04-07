@@ -1,6 +1,6 @@
-# We'll use the `requests` module to make our HTTP Request 
+# We'll use the `requests` module to make our HTTP Request
 import requests
-
+import sys
 # We'll use the `json` module to format our response's data
 import json
 
@@ -8,14 +8,14 @@ import json
 # Super important, we need this to show that we're authorized to make our request
 x_api_key = 'ie5EtNqb2pafUpw0FsMC84hHqrW9L4uf2Ql9YTJF' # Should not be empty
 # See the README for info on how to get an API Key
-
+input_string = "".join(map(chr, sys.stdin.buffer.read()))
 # First, we define our base URL and our parameters
 # Our parameters can be a Dictionary, since the `requests` module converts them
 # Our headers can also be a Dictionary, `requests` converts these as well
 endpoint = 'https://fmrrixuk32.execute-api.us-east-1.amazonaws.com/hacktj/legislators'
 parameters = {
   'level': 'NATIONAL_LOWER',
-  'address': '6560 Braddock Rd'
+  'address': input_string
 }
 headers = {
   'X-API-Key': x_api_key
