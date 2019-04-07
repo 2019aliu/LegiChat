@@ -5,16 +5,18 @@ auth.set_access_token('940292355063799808-EmfvMfRHrvPI66kAoiaNHOxjuIYmSsZ', 'FE1
 
 api = tweepy.API(auth)
 
-def find_tweets(longitude,latitude):
-    string = ""+str(longitude)+","+str(latitude)+","+"3mi"
-    print(string)
-    location_tweets = api.search(q='Trump',count = 100,geocode=string)
-    for tweet in location_tweets:
-        print(tweet.text)
+def find_tweets(keyword,longitude,latitude):
+    string = ""+str(longitude)+","+str(latitude)+","+"10mi"
+    #print(string)
+    location_tweets = api.search(q=keyword,count = 100,geocode=string)
     return location_tweets
-def format_tweets(listoftweets):
-	for tweet in listoftweets:
-		print(tweet.user.screen_name,tweet.created_at)
-
-temps = find_tweets(39.0116285,-77.358158)
-format_tweets(temps)
+def format_string(line_of_tweets):
+	for tweet in line_of_tweets:
+		if(tweet.text != ''):
+			print(tweet.user.name,tweet.created_at,tweet.text.strip())
+if __name__ == "__main__":
+	file = open("commonwords.txt","r")
+	lister = file.readlines()
+	for word in lister:
+		tweet = find_tweets(word,39.0116285,-77.358158)
+		format_string(tweet)
