@@ -40,11 +40,12 @@ app.get('/makeuser', function(req, res) {
 	var myEmail = req.query.email;
     var myUsername = req.query.username;
     var myPassword = req.query.password;
-    var myZip = req.query.zip;
+    var myZip = parseInt(req.query.zip, 10);
 
-    var addUser = 'call initialize_user("' + myEmail + '",' +  username + '",' + password + '",' + zip + ')';
-    pool.query(addUser, function(error, results, fields){
-        if (error) throw error;s
+    // var addUser = 'call initialize_user("' + myEmail + '",' +  username + '",' + password + '",' + zip + ')';
+    var addUser = 'call initialize_user(?, ?, ?, ?)';
+    pool.query(addUser, [myEmail, myUsername, myPassword, myZip], function(error, results, fields){
+        if (error) throw error;
         var message = "Registration is successful! Please log in with your new credentials";
         var response = {
             msg: message
