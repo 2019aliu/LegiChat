@@ -87,7 +87,7 @@ app.get('/forum', function(req, res){
                   firstName, lastName, message
               }
               console.log('MESSAGE', message)
-              res.render('index',{"legislatorName": message, "username": "user"});
+              res.render('index',{"legislatorName": message, "username": results[0].username});
             })
             
           }).catch(function(error) {
