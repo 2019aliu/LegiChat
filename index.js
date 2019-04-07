@@ -39,6 +39,10 @@ app.get('/register', function(req, res) {
 app.get('/makeuser', function(req, res) {
 	
 });
+
+app.get('/login', function(req, res) {
+    
+});
 // -------------- listener -------------- //
 // // The listener is what keeps node 'alive.' 
 
