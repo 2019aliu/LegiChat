@@ -31,6 +31,7 @@
 			<br>
 			<button onclick="validateForm()">Register</div>
 		</form>
+		<h3 id="updateText"></h3>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<script type="text/javascript">
 			function validateForm() {
@@ -53,7 +54,9 @@
                     url: "makeuser",
                     data: $("#userReg").serialize(),
                     success: function(data) {
-                        console.log(data)
+                        document.getElementById("updateText").innerText(data.msg);
+						window.location = "https://legichat.sites.tjhsst.edu/login";
+						//window.location to access a different part of the site
                     },
 					failure: function(data) {
 						console.log(data);

@@ -37,12 +37,30 @@ app.get('/register', function(req, res) {
 });
 
 app.get('/makeuser', function(req, res) {
-	
+	var myEmail = req.query.email;
+    var myUsername = req.query.username;
+    var myPassword = req.query.password;
+    var myZip = req.query.zip;
+
+    var addUser = 'call initialize_user("' + myEmail + '",' +  username + '",' + password + '",' + zip + ')';
+    pool.query(addUser, function(error, results, fields){
+        if (error) throw error;s
+        var message = "Registration is successful! Please log in with your new credentials";
+        var response = {
+            msg: message
+        };
+        res.send(response);
+    })
 });
 
 app.get('/login', function(req, res) {
     res.render('login');
 });
+
+app.get('/login_endpoint', function(req, res){
+    //nothing here yet
+});
+
 // -------------- listener -------------- //
 // // The listener is what keeps node 'alive.' 
 
