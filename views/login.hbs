@@ -18,9 +18,9 @@
 			Login:
 		</h1>
 		<form id="login" name="login">
-			<label for="signin">Email or Username:</label>
+			<label for="username">Email or Username:</label>
 			<br>
-			<input id="signin" type="text" name="signin"/>
+			<input id="username" type="text" name="username"/>
 			<br>
 			<br>
 			<label for="password">Password:</label>
@@ -31,6 +31,35 @@
 			<input type="button" onclick="doAjax()" value="Sign-in" />
 		</form>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<
+	<script type="text/javascript">
+		function validateForm() {
+		    console.log("VAL");
+			var userName = document.getElementById("username").value.trim();
+            var userPassword = document.getElementById("password").value.trim();
+
+			// check if all fields are either blank	
+			if (userName.length == 0 || userName.length == 0) {
+				alert("Please fill out all required fields");  // this is a TEMPORARY solution, make it better
+			}
+			// put more validations here...
+
+			doAjax();
+		}
+
+		function doAjax() {
+			$.get({
+                url: "login-endpoint",
+                data: $("#login").serialize(),
+                success: function(data) {
+                    console.log("ondata");
+					window.location = "https://legichat.sites.tjhsst.edu/";
+					//window.location to access a different part of the site
+                },
+				failure: function(data) {
+					console.log(data);
+				}
+            });
+		}
+	</script>
 	</body>
 </html>
