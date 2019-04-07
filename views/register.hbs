@@ -9,35 +9,50 @@
 		<form id="userReg" name="userReg">
 			<label for="email">E-mail:</label>
 			<br>
-			<input type="text" name="email"/>
+			<input id="email" type="text" name="email"/>
 			<br>
 			<br>
 			<label for="username">Username:</label>
 			<br>
-			<input type="text" name="username"/>
+			<input id="username" type="text" name="username"/>
 			<br>
 			<br>
 			<label for="password">Password:</label>
 			<br>
-			<input type="password" name="password"/>
+			<input id="password" type="password" name="password"/>
 			<br>
 			<br>
 			<label for="zip">Zip Code:</label>
 			<br>
-			<input type="text" name="zip"/>
+			<input id="zip" type="text" name="zip"/>
 			<br>
 			<br>
 			<button onclick="doAjax()">Register</div>
 		</form>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<script type="text/javascript">
+			function validateForm() {
+				var userEmail = document.getElementById("email").value.trim();
+				var userName = document.getElementById("username").value.trim();
+                var userPassword = document.getElementById("password").value.trim();
+                var userZip = document.getElementById("zip").value.trim();
+
+				// check if all fields are either blank	
+				if (userEmail.length == 0 || userName.length == 0 || userName.length == 0 || userZip.length == 0) {
+					alert("")
+				}
+			}
+
 			function doAjax() {
 				 $.get({
                     url: "makeuser",
                     data: $("#userReg").serialize(),
                     success: function(data) {
                         console.log(data)
-                    }
+                    },
+					failure: function(data) {
+						console.log(data);
+					}
                 });
 			}
 		</script>
