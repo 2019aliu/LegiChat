@@ -1,4 +1,5 @@
 import tweepy
+import json
 long = 39.0116285
 lat = -77.358158
 auth = tweepy.OAuthHandler('fD8O9AisjaU1ytdxSOHpqevxH', 'gQleoJNrpVsjq7za9tLS4Dgl4od9vf9Vy9D3kbhrZ9Tq1viLsf')
@@ -29,3 +30,5 @@ if __name__ == "__main__":
         tweet = find_tweets(word,long,lat)
         listing = format_string(tweet)
         dictionary[word] = listing
+    string = json.dumps(dictionary)
+    print(string)
